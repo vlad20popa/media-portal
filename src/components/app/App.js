@@ -5,30 +5,26 @@ import {BrowserRouter as Router, Route} from 'react-router-dom';
 import HomePage from '../../pages/home.page';
 import AppHeader  from './AppHeader';
 
-const HOME_PAGE_ROUTE = "/";
+const HOME_PAGE_ROUTE = "/home";
 const LOGIN_PAGE_ROUTE = "/login";
 
+    export default class App extends Component {
 
-    // toggleDrawer = (open) => event => {
-    //     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-    //         return;
-    //     }
-    //
-    //     this.setState({ ...this.state, open: open });
-    // };
+        componentDidMount(){
+            console.log(this.props.router);
+        }
 
-    function App() {
-        return (
-            <MuiThemeProvider>
-                <div>
-                    <AppHeader/>
-                    <Router>
-                        <Route path={HOME_PAGE_ROUTE} component={HomePage}/>
-                        <Route path={LOGIN_PAGE_ROUTE} component={Login}/>
-                    </Router>
-                </div>
-            </MuiThemeProvider>
-        );
+        render() {
+            return (
+                <MuiThemeProvider>
+                    <div>
+                        <AppHeader/>
+                        <Router>
+                            <Route path={HOME_PAGE_ROUTE} component={HomePage}/>
+                            <Route path={LOGIN_PAGE_ROUTE} component={Login}/>
+                        </Router>
+                    </div>
+                </MuiThemeProvider>
+            );
+        }
     }
-
-    export default App;

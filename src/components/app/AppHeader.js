@@ -7,7 +7,17 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import {fade, makeStyles} from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
+
+
 import Drawer from '@material-ui/core/Drawer';
+import Button from '@material-ui/core/Button';
+import List from '@material-ui/core/List';
+import Divider from '@material-ui/core/Divider';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import HomeIcon from '@material-ui/icons/Home';
+import FavoitesIcon from '@material-ui/icons/Favorite';
 
 
 const useStyles = makeStyles(theme => ({
@@ -64,42 +74,84 @@ const useStyles = makeStyles(theme => ({
     list: {
         width: 250,
     }
-    }));
+}));
+
 
 function AppHeader() {
 
+    const [state, setState] = React.useState({
+        isOpened: false
+    });
+
+    const toggleDrawer = (open) => event => {
+        if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+            return;
+        }
+
+        setState({...state, isOpened: open});
+    };
+
+    const openPage = (e) => {
+        console.log(e);
+    };
 
     const classes = useStyles();
 
+    const sideList = () => (
+        <div
+            className={classes.list}
+            role="presentation"
+            onClick={toggleDrawer(false)}
+            onKeyDown={toggleDrawer(false)}
+        >
+            <List>
+                <ListItem button key="home">
+                    <ListItemIcon onClick = {openPage}><HomeIcon/></ListItemIcon>
+                    <ListItemText primary="Home" />
+                </ListItem>
+                <ListItem button key="favorites" >
+                    <ListItemIcon onClick = {openPage}><FavoitesIcon/></ListItemIcon>
+                    <ListItemText primary="Favorites" />
+                </ListItem>
+            </List>
+        </div>
+    );
+
     return (
-        <AppBar position="static">
-            <Toolbar>
-                <IconButton
-                    edge="start"
-                    className={classes.menuButton}
-                    color="inherit"
-                    aria-label="open drawer"
-                >
-                    <MenuIcon/>
-                </IconButton>
-                <Typography className={classes.title} variant="h6" noWrap>
-                    Movie Portal
-                </Typography>
-                <div className={classes.search}>
-                    <div className={classes.searchIcon}>
-                        <SearchIcon/>
+        <div>
+            <AppBar position="static">
+                <Toolbar>
+                    <IconButton
+                        edge="start"
+                        className={classes.menuButton}
+                        color="inherit"
+                        aria-label="open drawer"
+                        onClick={toggleDrawer(true)}
+                    >
+                        <MenuIcon/>
+                    </IconButton>
+                    <Typography className={classes.title} variant="h6" noWrap>
+                        Movie Portal
+                    </Typography>
+                    <div className={classes.search}>
+                        <div className={classes.searchIcon}>
+                            <SearchIcon/>
+                        </div>
+                        <InputBase
+                            placeholder="Search…"
+                            classes={{
+                                root: classes.inputRoot,
+                                input: classes.inputInput,
+                            }}
+                            inputProps={{'aria-label': 'search'}}
+                        />
                     </div>
-                    <InputBase
-                        placeholder="Search…"
-                        classes={{
-                            root: classes.inputRoot,
-                            input: classes.inputInput,
-                        }}
-                        inputProps={{'aria-label': 'search'}}
-                    />
-                </div>
-            </Toolbar>
-        </AppBar>
+                </Toolbar>
+            </AppBar>
+            <Drawer open={state.isOpened} onClose={toggleDrawer(false)}>
+                {sideList()}
+            </Drawer>
+        </div>
     );
 }
 
