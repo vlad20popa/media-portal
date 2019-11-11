@@ -57,9 +57,6 @@ export default class HomePage extends Component {
             <div>
                 <Container>
                     <Row>
-                        <p>Search will go here</p>
-                    </Row>
-                    <Row>
                         <MoviesList movies={movies} openModal = {this.openModal.bind(this)}/>
                     </Row>
                 </Container>
