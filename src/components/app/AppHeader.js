@@ -77,7 +77,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-function AppHeader() {
+function AppHeader(props) {
 
     const [state, setState] = React.useState({
         isOpened: false
@@ -91,8 +91,16 @@ function AppHeader() {
         setState({...state, isOpened: open});
     };
 
-    const openPage = (e) => {
-        console.log(e);
+    const openLogin = (e) => {
+        props.history.push('/login');
+    };
+
+    const openHome = (e) => {
+        props.history.push('/home');
+    };
+
+    const openFavorites = (e) => {
+        props.history.push('/favorites');
     };
 
     const classes = useStyles();
@@ -106,11 +114,11 @@ function AppHeader() {
         >
             <List>
                 <ListItem button key="home">
-                    <ListItemIcon onClick = {openPage}><HomeIcon/></ListItemIcon>
+                    <ListItemIcon onClick = {openHome}><HomeIcon/></ListItemIcon>
                     <ListItemText primary="Home" />
                 </ListItem>
                 <ListItem button key="favorites" >
-                    <ListItemIcon onClick = {openPage}><FavoitesIcon/></ListItemIcon>
+                    <ListItemIcon onClick = {openFavorites}><FavoitesIcon/></ListItemIcon>
                     <ListItemText primary="Favorites" />
                 </ListItem>
             </List>
@@ -146,6 +154,7 @@ function AppHeader() {
                             inputProps={{'aria-label': 'search'}}
                         />
                     </div>
+                    <Button color="inherit" onClick = {openLogin}>Login</Button>
                 </Toolbar>
             </AppBar>
             <Drawer open={state.isOpened} onClose={toggleDrawer(false)}>
