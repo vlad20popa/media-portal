@@ -21,7 +21,7 @@ export default class FavoritesPage extends Component {
     }
 
     async componentDidMount() {
-        let movies = await  customAxios.get('/favourites', REQUEST_HEADER_WITH_CREDENTIAL);
+        let movies = await  customAxios.get('media-service/v1/favourites', REQUEST_HEADER_WITH_CREDENTIAL);
 
         console.log(movies);
         console.log("did mount favorites---------------------");
@@ -39,7 +39,7 @@ export default class FavoritesPage extends Component {
 
     render() {
         return (
-            <div>
+            <div style={{marginTop: '100px'}}>
                 <Container>
                     <Row>
                         <MoviesList movies={this.state.movies} openModal = {this.openModal.bind(this)}/>

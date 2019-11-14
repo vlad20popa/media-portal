@@ -16,7 +16,8 @@ const styles = {
     },
     card: {
         cursor: 'pointer',
-        height: 400,
+        height: 349,
+        minWidth: 262,
         overflow: 'hidden'
     },
     bgImage: {

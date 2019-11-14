@@ -5,7 +5,7 @@ import HomePage from "./pages/home.page";
 import Login from "./pages/login.page";
 import FovoritesPage from "./pages/favorites.page"
 import {BrowserRouter as Router, Route} from 'react-router-dom';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import { MuiThemeProvider } from 'material-ui/styles';
 
 const HOME_PAGE_ROUTE = "/home";
 const LOGIN_PAGE_ROUTE = "/login";

@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import {Container, Row, Col} from 'react-bootstrap/';
-import AppBar from 'material-ui/AppBar';
 import MoviesList from '../components/movieList';
-import { movies } from '../resources/movies';
-import * as movieListUtils from '../components/utils/movieListUtils';
 import MovieModal from '../components/movieModal';
 import customAxios from '../httpRequests/customAxios';
 
@@ -26,7 +23,7 @@ export default class HomePage extends Component {
     }
 
     async componentDidMount() {
-        let movies = await  customAxios.get('/GetMedia', REQUEST_HEADER_WITH_CREDENTIAL);
+        let movies = await  customAxios.get('media-service/v1/GetMedia', REQUEST_HEADER_WITH_CREDENTIAL);
 
         console.log(movies);
         console.log("did mount---------------------");
@@ -60,7 +57,7 @@ export default class HomePage extends Component {
 
     render() {
         return (
-            <div>
+            <div style={{marginTop: '100px'}}>
                 <Container>
                     <Row>
                         <MoviesList movies={this.state.movies} openModal = {this.openModal.bind(this)}/>

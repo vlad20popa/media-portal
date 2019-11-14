@@ -12,7 +12,6 @@ import SearchIcon from '@material-ui/icons/Search';
 import Drawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -26,6 +25,9 @@ const useStyles = makeStyles(theme => ({
     },
     menuButton: {
         marginRight: theme.spacing(2),
+    },
+    appBar: {
+        zIndex: theme.zIndex.drawer + 1,
     },
     title: {
         flexGrow: 1,
@@ -72,7 +74,7 @@ const useStyles = makeStyles(theme => ({
         },
     },
     list: {
-        width: 250,
+        width: 250
     }
 }));
 
@@ -111,14 +113,15 @@ function AppHeader(props) {
             role="presentation"
             onClick={toggleDrawer(false)}
             onKeyDown={toggleDrawer(false)}
+            style={{marginTop: '64px'}}
         >
             <List>
-                <ListItem button key="home">
-                    <ListItemIcon onClick = {openHome}><HomeIcon/></ListItemIcon>
+                <ListItem button key="home" onClick = {openHome}>
+                    <ListItemIcon ><HomeIcon/></ListItemIcon>
                     <ListItemText primary="Home" />
                 </ListItem>
-                <ListItem button key="favorites" >
-                    <ListItemIcon onClick = {openFavorites}><FavoitesIcon/></ListItemIcon>
+                <ListItem button key="favorites" onClick = {openFavorites}>
+                    <ListItemIcon ><FavoitesIcon/></ListItemIcon>
                     <ListItemText primary="Favorites" />
                 </ListItem>
             </List>
@@ -127,7 +130,7 @@ function AppHeader(props) {
 
     return (
         <div>
-            <AppBar position="static">
+            <AppBar position="fixed" className={classes.appBar} style={{zIndex: 1400}}>
                 <Toolbar>
                     <IconButton
                         edge="start"
@@ -155,11 +158,12 @@ function AppHeader(props) {
                         />
                     </div>
                     <Button color="inherit" onClick = {openLogin}>Login</Button>
+                    <Drawer open={state.isOpened} onClose={toggleDrawer(false)}>
+                        {sideList()}
+                    </Drawer>
                 </Toolbar>
             </AppBar>
-            <Drawer open={state.isOpened} onClose={toggleDrawer(false)}>
-                {sideList()}
-            </Drawer>
+
         </div>
     );
 }
