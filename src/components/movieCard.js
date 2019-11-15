@@ -11,7 +11,7 @@ const styles = {
         overflow: 'hidden'
     },
     cardMedia: {
-        maxHeight: 394,
+        maxHeight: 349,
         overflow: 'hidden'
     },
     card: {
@@ -46,17 +46,17 @@ class MovieCard extends React.Component {
                 onMouseLeave={() => this.setState({isMouseOver: false})}
                 onClick= {() => openModal(movie)}
             >
-                {/* <CardTitle title={<div style={styles.cardTitle}>{movie.title}</div>} /> */}
                 <CardMedia
                     style={styles.cardMedia}
                     overlay={
                         <CardTitle
+                            style={{height: '90% !important'}}
                             title={movie.title}
                             subtitle={subtitle}
                         />
                     }
                 >
-                    <img style={styles.bgImage} src={moviePlaceholder} />
+                    <img style={styles.bgImage} src={movie.imageUri} />
                 </CardMedia>
             </Card>
         );

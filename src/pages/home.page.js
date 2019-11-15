@@ -31,6 +31,14 @@ export default class HomePage extends Component {
         this.setState({...this.state, movies: movies.data});
     }
 
+    async componentDidUpdate(prevProps, prevState, sanapshot){
+        if(prevProps.location.query !== this.props.location.query){
+            let movies = await  customAxios.get('media-service/v1/GetMedia?title='+ this.props.location.query, REQUEST_HEADER_WITH_CREDENTIAL);
+
+            this.setState({...this.state, movies: movies.data});
+        }
+    }
+
     // componentWillUnmount() {
     //     window.removeEventListener('scroll', this.handleScroll);
     // }

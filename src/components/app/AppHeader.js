@@ -106,6 +106,16 @@ function AppHeader(props) {
         props.history.push(FAVORITES_PAGE_ROUTE);
     };
 
+    const onSearch = (e) => {
+        if(e.keyCode === 13){
+            console.log(e.target.value);
+            props.history.push({
+                pathname: HOME_PAGE_ROUTE,
+                query: e.target.value
+            });
+        }
+    };
+
     const classes = useStyles();
 
     const sideList = () => (
@@ -156,6 +166,7 @@ function AppHeader(props) {
                                 input: classes.inputInput,
                             }}
                             inputProps={{'aria-label': 'search'}}
+                            onKeyDown={(e) => onSearch(e)}
                         />
                     </div>
                     <Button color="inherit" onClick = {openLogin}>Login</Button>
