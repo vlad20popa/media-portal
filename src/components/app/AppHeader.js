@@ -17,6 +17,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import HomeIcon from '@material-ui/icons/Home';
 import FavoitesIcon from '@material-ui/icons/Favorite';
+import {HOME_PAGE_ROUTE, FAVORITES_PAGE_ROUTE, LOGIN_PAGE_ROUTE} from '../../pages/applicationRoutes'
 
 
 const useStyles = makeStyles(theme => ({
@@ -94,15 +95,15 @@ function AppHeader(props) {
     };
 
     const openLogin = (e) => {
-        props.history.push('/login');
+        props.history.push(LOGIN_PAGE_ROUTE);
     };
 
     const openHome = (e) => {
-        props.history.push('/home');
+        props.history.push(HOME_PAGE_ROUTE);
     };
 
     const openFavorites = (e) => {
-        props.history.push('/favorites');
+        props.history.push(FAVORITES_PAGE_ROUTE);
     };
 
     const classes = useStyles();

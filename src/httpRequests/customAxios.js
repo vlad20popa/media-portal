@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export default axios.create({
-    baseURL: "http://localhost:8080/",
+    baseURL: window.config.baseURL,
     timeout: 100000,
     responseType: "json"
 });
