@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Container, Row, Col} from 'react-bootstrap/';
+import {Container, Row} from 'react-bootstrap/';
 import MoviesList from '../components/movieList';
 import MovieModal from '../components/movieModal';
 import customAxios from '../httpRequests/customAxios';
@@ -15,19 +15,10 @@ export default class HomePage extends Component {
             isModalOpened: false,
             movies: null
         };
-        // Binds the handleScroll to this class (MovieBrowser)
-        // which provides access to MovieBrowser's props
-        // Note: You don't have to do this if you call a method
-        // directly from a lifecycle method or define an arrow function
-        // this.handleScroll = this.handleScroll.bind(this);
     }
 
     async componentDidMount() {
         let movies = await  customAxios.get('media-service/v1/GetMedia', REQUEST_HEADER_WITH_CREDENTIAL);
-
-        console.log(movies);
-        console.log("did mount---------------------");
-
         this.setState({...this.state, movies: movies.data});
     }
 
@@ -38,22 +29,6 @@ export default class HomePage extends Component {
             this.setState({...this.state, movies: movies.data});
         }
     }
-
-    // componentWillUnmount() {
-    //     window.removeEventListener('scroll', this.handleScroll);
-    // }
-
-    // handleScroll() {
-    //     const {topMovies} = this.props;
-    //     if (movies) {
-    //         let percentageScrolled = movieListUtils.getScrollDownPercentage(window);
-    //         if (percentageScrolled > .8) {
-    //             const nextPage = this.state.currentPage + 1;
-    //             this.props.getTopMovies(nextPage);
-    //             this.setState({currentPage: nextPage});
-    //         }
-    //     }
-    // }
 
     openModal(movie){
         this.setState({...this.state, isModalOpened: true, movie: movie} )

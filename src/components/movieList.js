@@ -19,6 +19,6 @@ const MovieList = ({movies, openModal}) => {
             {movieColumns}
         </Row>
     );
-}
+};
 
 export default MovieList;

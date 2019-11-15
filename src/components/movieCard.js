@@ -1,9 +1,6 @@
 import React from 'react';
 import {Card, CardTitle, CardMedia} from 'material-ui';
-import moviePlaceholder from '../resources/placeholderVod.jpg';
 
-// These are inline styles
-// You can pass styles as objects using this convention
 const styles = {
     cardTitle: {
         whiteSpace: 'nowrap',
@@ -36,7 +33,6 @@ class MovieCard extends React.Component {
 
     render() {
         const {movie, openModal} = this.props;
-        // The subtitle won't render if it's null
         const subtitle = this.state.isMouseOver ? movie.description : null;
 
         return (
@@ -44,7 +40,7 @@ class MovieCard extends React.Component {
                 style={styles.card}
                 onMouseOver={() => this.setState({isMouseOver: true})}
                 onMouseLeave={() => this.setState({isMouseOver: false})}
-                onClick= {() => openModal(movie)}
+                onClick={() => openModal(movie)}
             >
                 <CardMedia
                     style={styles.cardMedia}
@@ -56,7 +52,7 @@ class MovieCard extends React.Component {
                         />
                     }
                 >
-                    <img style={styles.bgImage} src={movie.imageUri} />
+                    <img style={styles.bgImage} src={movie.imageUri}/>
                 </CardMedia>
             </Card>
         );

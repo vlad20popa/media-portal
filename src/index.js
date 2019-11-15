@@ -8,9 +8,6 @@ import {BrowserRouter as Router, Route} from 'react-router-dom';
 import { MuiThemeProvider } from 'material-ui/styles';
 import * as ROUTES from './pages/applicationRoutes';
 
-
-console.log(ROUTES.LOGIN_PAGE_ROUTE);
-
 const routes =
     (
     <MuiThemeProvider>

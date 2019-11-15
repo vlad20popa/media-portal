@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import {Container, Row, Col} from 'react-bootstrap/';
-import AppBar from 'material-ui/AppBar';
+import {Container, Row} from 'react-bootstrap/';
 import MoviesList from '../components/movieList';
-import { movies } from '../resources/movies';
-import * as movieListUtils from '../components/utils/movieListUtils';
 import MovieModal from '../components/movieModal';
 import customAxios from "../httpRequests/customAxios";
 
@@ -22,10 +19,6 @@ export default class FavoritesPage extends Component {
 
     async componentDidMount() {
         let movies = await  customAxios.get('media-service/v1/favourites', REQUEST_HEADER_WITH_CREDENTIAL);
-
-        console.log(movies);
-        console.log("did mount favorites---------------------");
-
         this.setState({...this.state, movies: movies.data});
     }
 
