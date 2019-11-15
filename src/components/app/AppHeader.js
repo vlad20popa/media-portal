@@ -94,15 +94,15 @@ function AppHeader(props) {
         setState({...state, isOpened: open});
     };
 
-    const openLogin = (e) => {
+    const openLogin = () => {
         props.history.push(LOGIN_PAGE_ROUTE);
     };
 
-    const openHome = (e) => {
+    const openHome = () => {
         props.history.push(HOME_PAGE_ROUTE);
     };
 
-    const openFavorites = (e) => {
+    const openFavorites = () => {
         props.history.push(FAVORITES_PAGE_ROUTE);
     };
 
@@ -127,11 +127,11 @@ function AppHeader(props) {
             style={{marginTop: '64px'}}
         >
             <List>
-                <ListItem button key="home" onClick = {openHome}>
+                <ListItem button key="home" onClick={openHome}>
                     <ListItemIcon ><HomeIcon/></ListItemIcon>
                     <ListItemText primary="Home" />
                 </ListItem>
-                <ListItem button key="favorites" onClick = {openFavorites}>
+                <ListItem button key="favorites" onClick={openFavorites}>
                     <ListItemIcon ><FavoitesIcon/></ListItemIcon>
                     <ListItemText primary="Favorites" />
                 </ListItem>
@@ -169,7 +169,7 @@ function AppHeader(props) {
                             onKeyDown={(e) => onSearch(e)}
                         />
                     </div>
-                    <Button color="inherit" onClick = {openLogin}>Login</Button>
+                    <Button color="inherit" onClick={openLogin}>Login</Button>
                     <Drawer open={state.isOpened} onClose={toggleDrawer(false)}>
                         {sideList()}
                     </Drawer>

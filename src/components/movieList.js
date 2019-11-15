@@ -6,11 +6,11 @@ const styles = {
     movieColumn: {
         marginBottom: 20
     }
-}
+};
 const MovieList = ({movies, openModal}) => {
     const movieColumns = movies ? movies.map(movie => (
             <Col style={styles.movieColumn} key={movie.id} xs={12} sm={4} md={3} lg={3}>
-                <MovieCard movie={movie} openModal = {openModal}/>
+                <MovieCard movie={movie} openModal={openModal}/>
             </Col>
     )) : null;
 

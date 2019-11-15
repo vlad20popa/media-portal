@@ -52,7 +52,7 @@ class MovieCard extends React.Component {
                         />
                     }
                 >
-                    <img style={styles.bgImage} src={movie.imageUri}/>
+                    <img style={styles.bgImage} src={movie.imageUri} alt=""/>
                 </CardMedia>
             </Card>
         );

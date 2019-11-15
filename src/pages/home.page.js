@@ -43,11 +43,11 @@ export default class HomePage extends Component {
             <div style={{marginTop: '100px'}}>
                 <Container>
                     <Row>
-                        <MoviesList movies={this.state.movies} openModal = {this.openModal.bind(this)}/>
+                        <MoviesList movies={this.state.movies} openModal={this.openModal.bind(this)}/>
                     </Row>
                 </Container>
-                <MovieModal closeMovieModal = {this.closeModal.bind(this)} movie={this.state.movie}
-                            isModalOpened = {this.state.isModalOpened}/>
+                <MovieModal closeMovieModal={this.closeModal.bind(this)} movie={this.state.movie}
+                            isModalOpened={this.state.isModalOpened}/>
             </div>
         );
     }
