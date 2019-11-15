@@ -1,6 +1,12 @@
 import React from 'react';
 import { Dialog } from 'material-ui';
 import posterPlaceholder from '../resources/movie_poster_placeholder.png';
+import Rating from '@material-ui/lab/Rating';
+import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
+import StarBorderIcon from '@material-ui/icons/StarBorder';
+import customAxios from '../httpRequests/customAxios';
+
 
 const styles = {
     // Can use functions to dynamically build our CSS
@@ -14,6 +20,12 @@ const styles = {
         padding: 10
     })
 }
+const monthNames = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+];
+
+const REQUEST_HEADER_WITH_CREDENTIAL = { headers: { "Content-Type":"application/json", "Accept":"application/json" }, withCredentials: true };
+
 
 export default class MovieModalContainer extends React.Component {
     // Triggered right after a property is changed
@@ -24,10 +36,21 @@ export default class MovieModalContainer extends React.Component {
         }
     }
 
+    addToFavoties(){
+        customAxios.put('/media-service/v1/favourites?mediaId=' + this.props.movie.id, REQUEST_HEADER_WITH_CREDENTIAL);
+    }
+
     render() {
         const {isModalOpened, closeMovieModal, movie} = this.props;
         // const movie = movieHelpers.updateMoviePictureUrls(this.props.movie);
         const actors = (movie && movie.actors) ? movie.actors.map(genre => genre).join(', ') : '';
+
+        let date;
+        if(movie && movie.release){
+            console.log(movie);
+            date = new Date(movie.release);
+        }
+        console.log(date);
 
         return (
             <Dialog
@@ -41,12 +64,19 @@ export default class MovieModalContainer extends React.Component {
                     <h1>{movie.title}</h1>
                     <h5>{actors}</h5>
                     <p>{movie.description}</p>
-                    <p>Rating: {movie.averageRating}</p>
-                    <p>Release date: ${movie.release}</p>
-                    {/*<div className={"bordered-button"} >*/}
-                        {/*<label className={"bold-text size-24 bordered-button-text"}>Add to favorites</label>*/}
-                    {/*</div>*/}
-                    <button type="button" className="btn btn-primary" color="#ff6600">Add to favorites</button>
+                    <div>
+                        <Box component="fieldset" mb={3} borderColor="transparent">
+                            <Typography component="legend">Rating</Typography>
+                            <Rating
+                                name="customized-empty"
+                                value={movie.averageRating/20}
+                                precision={1}
+                                emptyIcon={<StarBorderIcon fontSize="inherit" />}
+                            />
+                        </Box>
+                    </div>
+                    <p>Release date: {date.getDay() + " " +monthNames[date.getMonth()] + " " + date.getUTCFullYear()}</p>
+                    <button type="button" className="btn btn-primary" color="#ff6600" onClick={this.addToFavoties.bind(this)}>Add to favorites</button>
                 </div>}
             </Dialog>
         );
